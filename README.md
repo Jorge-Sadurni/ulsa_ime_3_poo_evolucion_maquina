@@ -8,17 +8,20 @@ Llena cada espacio conforme avances en las fases de [PRACTICA.md](PRACTICA.md).
 
 **1.1 El problema con mis propias palabras**
 
-[Inserta aquí tu respuesta]
+La planta de manufactura que se trabajo durante el segundo parcial tiene las maquinas torno, fresadora, pulidora, estación de inspección y banda transportador que trabajan en conjunto en una linea de produccion. Cada maquina tiene un nombre, cuenta las piezas procesadas, el tiempo trabajado y sabe cuanto  tiempo dura un ciclo. Finalmente la planta ejecuta turnos y genera un reporte con las piezas, el tiempo y la capacidad por hora de cada máquina.
 
 **1.2 Reglas que siempre deben cumplirse en una máquina** (escribe al menos tres)
 
-1. _____
-2. _____
-3. _____
+1. Responsabilidad Unica
+2. Proteccion de Datos Heredados 
+3. Sobrescribir Metodos (virtual - override) / Polimorfismo
 
 **1.3 ¿Quién más usa la clase `Maquina`? ¿Qué podría salir mal si otro equipo crea una máquina nueva sin conocer tus reglas?**
 
-[Inserta aquí tu respuesta]
+En caso de que otro equipo contribuya y desconozca de estas reglas puede ocurrir lo siguiente:
+- Pérdida de encapsulamiento: Si los datos heredados no se protegen adecuadamente, cualquier programador podría modificarlos externamente de forma incorrecta, con el peligro de corromper el estado de la máquina y alterar los reportes de la planta.
+- Ruptura del polimorfismo: Al no respetar el contrato de la clase base , se pierde la ventaja de tratar a todas las máquinas de forma genérica. El programa principal ya no podría interactuar con la máquina específica mediante polimorfismo.
+- Ignorando el principio de responsabilidad unica, otros programadores podrian agregar responsabilidades extra a una maquina.
 
 ## Fase 2. Diseñar la solución
 
