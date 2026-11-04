@@ -133,11 +133,16 @@ En el main el torno si fue destruido ya que la maquina se creo localmente, por l
 
 a) Copia los mensajes de error y explica con tus palabras qué dice cada uno.
 
-[Inserta aquí tu respuesta]
+src/main.cpp:10:14: error: cannot declare variable 'pulidora' to be of abstract type 'Pulidora'
+   10 |     Pulidora pulidora("Pulidora P-01");
+   Este error aparece debido a que hicimos la clase maquina.h abstracta y creamos metodos puros, creando una regla a las clases hijas a desarrollar y sobrescribir estos metodos, en este momento no se habia implementado el metodo de procesar en pulidora.
 
+src/main.cpp:11:13: error: cannot declare variable 'generica' to be of abstract type 'Maquina'
+   11 |     Maquina generica("Maquina sin tipo"); 
+Este error surge porque en POO las clases abstractas no pueden instanciar directamente, estas plantillas definen el que va a hacer, mas no como lo hacen.
 b) ¿Por qué es mejor este error de compilación que el comportamiento "generico" de antes?
 
-[Inserta aquí tu respuesta]
+Es mejor este error de compilacion ya que de avisa del error logico que tienes, en vez de que mienta el programa y emita una salida erronea. Ademas te detiene al ingresar maquinas fantasmas o si te falto desarrollar alguno de los metodos puros que establecio la maquina base, te lo dice.
 
 **3.6 Etapa 6. El contrato que el compilador no ve**
 
