@@ -1,15 +1,35 @@
 #include "Maquina.h"
-
 #include <iostream>
+#include <stdexcept>
 
 Maquina::Maquina(const std::string &nombre)
-    : nombre(nombre), piezasProcesadas(0), tiempoTrabajadoSeg(0) {}
+    : nombre(nombre), piezasProcesadas(0), tiempoTrabajadoSeg(0)
+{
+    if (nombre.empty())
+    {
+        throw std::invalid_argument("El nombre no puede estar vacio");
+    }
+}
+
+void Maquina::registrarPieza()
+{
+    piezasProcesadas++;
+}
+
+void Maquina::agregarTiempo(int segundos)
+{
+    if (segundos <= 0)
+    {
+        throw std::invalid_argument("Los segundos deben ser mayores que cero");
+    }
+    tiempoTrabajadoSeg += segundos;
+}
 
 void Maquina::procesar()
 {
     std::cout << nombre << ": procesamiento generico\n";
-    piezasProcesadas++;
-    tiempoTrabajadoSeg += 10;
+    registrarPieza();
+    agregarTiempo(10);
 }
 
 void Maquina::mostrarEstado() const
@@ -17,3 +37,7 @@ void Maquina::mostrarEstado() const
     std::cout << nombre << " | piezas: " << piezasProcesadas
               << " | tiempo: " << tiempoTrabajadoSeg << " s\n";
 }
+
+const std::string &Maquina::getNombre() const { return nombre; }
+int Maquina::getPiezasProcesadas() const { return piezasProcesadas; }
+int Maquina::getTiempoTrabajadoSeg() const { return tiempoTrabajadoSeg; }

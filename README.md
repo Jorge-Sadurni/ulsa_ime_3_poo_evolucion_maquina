@@ -52,25 +52,35 @@ En caso de que otro equipo contribuya y desconozca de estas reglas puede ocurrir
 
 a) ¿Qué imprime `ejecutarTurno()` para el torno y la fresadora? ¿Por qué no imprime "torneando" ni "fresando"?
 
-[Inserta aquí tu respuesta]
+
+Torno T-01: procesamiento generico
+Fresadora F-01: procesamiento generico
+Use code with caution.
+
+No imprime los mensajes específicos porque en la clase base Maquina falta la palabra clave virtual en el método procesar(). Como la función ejecutarTurno recibe una Maquina& genérica, el compilador se confunde y decide ejecutar el código del padre (enlace estático), ignorando por completo que en realidad le pasaste un torno y una fresadora.
+
 
 b) ¿Por qué el torno acumula 65 s y no 135 s?
 
-[Inserta aquí tu respuesta]
+El tiempo se calcula mal debido a que el programa suma dos cosas distintas en el main:
+	1. La llamada directa: Suma 45 segundos porque se llama desde la variable torno directamente y ahí sí encuentra su código.
+	2. El turno de 2 ciclos: Al entrar a ejecutarTurno, el compilador corre el código genérico de la clase padre en lugar del código del torno. Como cada ciclo genérico dura 10 segundos, solo se suman 20 segundos (\(10 \times 2\)).
+Al final, el total se queda en (45 + 20 = 65) segundos, en lugar de los 135 segundos que deberían ser si los tres ciclos hubieran trabajado como un torno real.
+
 
 **3.1 Etapa 1. Invariantes y constructores explicit**
 
 a) ¿Qué regla de la sección 1.2 rompió `torno.piezasProcesadas = -5;`?
 
-[Inserta aquí tu respuesta]
+Rompio la regla de proteccion de datos, ninguna maquina puede procesar piezas negativas. Poniendo las variables en un espacio publico, en cualquier parte del programa se pueden modoficar estos valores, destruyendo la logica y funcionalidad del reporte de la linea de produccion.
 
 b) ¿De dónde salió la máquina "Fantasma"? ¿Qué hizo el compilador sin que se lo pidieras?
 
-[Inserta aquí tu respuesta]
+El compilador hizo una conversion  automatica, como la funcion de imprimirFicha pide una maquina y en el main se agrego un pedazo de string "Fantasma" (variable codigo), C++ utilizo el texto y lo convirtio gracias al constructor.
 
 c) ¿Qué tuviste que cambiar en `Torno` y `Fresadora` y por qué?
 
-[Inserta aquí tu respuesta]
+Debido a los cambios hechos en maquina.h de poner los atributos en privado y la palabra explicit para evitar conversiones automaticas, las clases hijas (fresadora, torno) ya no pudieron modificar los valores directamente dentro de sus archivos. Por lo tanto, se crearon  funciones publicas y protegidas (agregarTiempo y registrarPieza) para controlar y validar la entrada de valores, ademas de que se agrego la palabra explicit para evitar conversiones.
 
 **3.2 Etapa 2. Virtual y override**
 
