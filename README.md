@@ -90,21 +90,22 @@ El programa uso el tiempo acumulado de 60 seg de procesar() porque si pudo enlaz
 
 b) ¿Tu compilador mostró alguna advertencia antes de usar `override`? ¿Qué mensaje dio después de agregar `override`?
 
-El compilador no mostro ningun error  y compilo, sin embargo como la firma de algunos metodos no coincidian, el programa penso que se trataba de un nuevo metodo y se estaba sobresrcibiendo, liberando una salida erronea.
+El compilador no mostro ningun error  y compilo, sin embargo como la firma de algunos metodos no coincidian, el programa penso que se trataba de un nuevo metodo y se estaba sobresrcibiendo, liberando una salida erronea. Despues, al agregar el override mostro la salida esperada.
 
 **3.3 Etapa 3. La línea de producción**
 
 a) ¿Por qué la línea procesó todo como "generico" si `procesar()` ya es virtual?
 
-[Inserta aquí tu respuesta]
+La linea proceso "generico" todo ya que se encontro con el object slicing, el controlDeLinea pasa por exclusivamente Maquinas y al querer pasar por la fresadora o torno, no las reconoce y tira todas las caracteristicas especiales de las clases hijas.
 
 b) ¿Por qué el torno y la fresadora originales quedaron con 0 piezas?
 
-[Inserta aquí tu respuesta]
+Al igual que el punto 3.3, las clases derivadas originales se quedaron en 0 pzas, porque en vez de que la linea apuntara una de estas maquinas, el programa creaba una maquina generica y hacia el slicing.
+
 
 c) La relación entre `ControlDeLinea` y `Maquina`, ¿es composición o agregación? ¿Por qué?
 
-[Inserta aquí tu respuesta]
+La relacion entre maquina y ControlDeLinea es agregacion ya que las maquinas pueden vivir sin la linea, si la linea deja de existir la fresadora o el torno siguen existiendo porque no mueren junto con la linea.
 
 **3.4 Etapa 4. Destructores**
 
