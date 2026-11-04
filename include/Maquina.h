@@ -26,6 +26,7 @@ public:
     int getPiezasProcesadas() const;
     int getTiempoTrabajadoSeg() const;
     void mostrarEstado() const;
+    virtual ~Maquina() = default;
 };
 
 #endif

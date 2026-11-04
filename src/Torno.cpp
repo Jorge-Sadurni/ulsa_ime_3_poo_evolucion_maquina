@@ -2,13 +2,12 @@
 
 #include <iostream>
 
-Torno::Torno(const std::string &nombre) : Maquina(nombre) {}
+Torno::Torno(const std::string &nombre) : Maquina(nombre), husillo(3000.0) {}
 
 void Torno::procesar()
 {
-    std::cout << getNombre() << ": torneando pieza\n";
-    registrarPieza();
-    agregarTiempo(tiempoCicloSeg());
+    husillo.fijarVelocidad(1200.0);
+    std::cout << "toreneando Pieza a 1200 rpm\n";
 }
 
 int Torno::tiempoCicloSeg() const

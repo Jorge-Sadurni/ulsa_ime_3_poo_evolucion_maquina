@@ -111,18 +111,24 @@ La relacion entre maquina y ControlDeLinea es agregacion ya que las maquinas pue
 
 | Momento | Mensajes de destrucción que aparecieron |
 | --- | --- |
-| `delete temporal;` sin destructor virtual | _____ |
-| `delete temporal;` con destructor virtual | _____ |
-| Al terminar `main` (torno y fresadora) | _____ |
+| `delete temporal;` sin destructor virtual |  Destruyendo Torno
+ Destruyendo Motor
+Destruyendo Maquina |
+| `delete temporal;` con destructor virtual | Destruyendo Torno
+ Destruyendo Motor
+Destruyendo Maquina |
+| Al terminar `main` (torno y fresadora) | Destruyendo Maquina
+Destruyendo Torno
+ Destruyendo Motor
+Destruyendo Maquina |
 
 a) ¿Qué advertencia mostró el compilador? ¿Por qué decimos que ya te estaba avisando del problema?
 
-[Inserta aquí tu respuesta]
+src/main.cpp:21:5: warning: deleting object of polymorphic class type 'Maquina' which has non-virtual destructor might cause undefined behavior [-Wdelete-non-virtual-dtor] El compilador arroja este mensaje antes porque sabe que estas usando polimosfismo y al no tener el destructor virtual en maquina.h el compilador puede olvidar destruir las clases hijas y solo eliminar la maquina base. 
 
 b) ¿Por qué el torno de `main` sí se destruyó completo aunque el destructor no fuera virtual? ¿A qué máquina corresponde el primer "Destruyendo Maquina" después de "Fin de main"?
 
-[Inserta aquí tu respuesta]
-
+En el main el torno si fue destruido ya que la maquina se creo localmente, por lo tanto sabia el tipo real y exacto. La primer maquina destruida corresponde a la ultima maquina declarada dentro del main de acuerdo a los conceptos LIFO (last in, first out).
 **3.5 Etapa 5. La clase abstracta**
 
 a) Copia los mensajes de error y explica con tus palabras qué dice cada uno.

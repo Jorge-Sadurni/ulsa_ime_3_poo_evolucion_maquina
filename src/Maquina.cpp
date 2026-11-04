@@ -4,6 +4,7 @@
 
 Maquina::Maquina(const std::string &nombre)
     : nombre(nombre), piezasProcesadas(0), tiempoTrabajadoSeg(0)
+
 {
     if (nombre.empty())
     {
