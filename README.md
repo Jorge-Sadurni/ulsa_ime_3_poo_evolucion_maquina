@@ -72,7 +72,7 @@ Al final, el total se queda en (45 + 20 = 65) segundos, en lugar de los 135 segu
 
 a) ¿Qué regla de la sección 1.2 rompió `torno.piezasProcesadas = -5;`?
 
-Rompio la regla de proteccion de datos, ninguna maquina puede procesar piezas negativas. Poniendo las variables en un espacio publico, en cualquier parte del programa se pueden modoficar estos valores, destruyendo la logica y funcionalidad del reporte de la linea de produccion.
+Rompio la regla de proteccion de datos, ninguna maquina puede procesar piezas negativas. Poniendo las variables en un espacio publico, en cualquier parte del programa se pueden modificar estos valores, destruyendo la logica y funcionalidad del reporte de la linea de produccion.
 
 b) ¿De dónde salió la máquina "Fantasma"? ¿Qué hizo el compilador sin que se lo pidieras?
 
@@ -86,11 +86,11 @@ Debido a los cambios hechos en maquina.h de poner los atributos en privado y la 
 
 a) La fresadora acumula 180 s, pero reporta 360 pzas/h. ¿Por qué un cálculo usó 60 s y el otro 10 s?
 
-[Inserta aquí tu respuesta]
+El programa uso el tiempo acumulado de 60 seg de procesar() porque si pudo enlazar directamente con el objeto derivado (fresadora). Por otro lado, en el caso de capacidadPorHora(), la cual vive dentro de maquina.h, no logra conectar con la clase hija y termina usando su valor por defecto debido a que no tiene la misma firma (override/virtual).
 
 b) ¿Tu compilador mostró alguna advertencia antes de usar `override`? ¿Qué mensaje dio después de agregar `override`?
 
-[Inserta aquí tu respuesta]
+El compilador no mostro ningun error  y compilo, sin embargo como la firma de algunos metodos no coincidian, el programa penso que se trataba de un nuevo metodo y se estaba sobresrcibiendo, liberando una salida erronea.
 
 **3.3 Etapa 3. La línea de producción**
 

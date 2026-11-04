@@ -9,6 +9,7 @@ public:
     explicit Fresadora(const std::string &nombre);
 
     void procesar();
+    int tiempoCicloSeg() const override;
 };
 
 #endif
