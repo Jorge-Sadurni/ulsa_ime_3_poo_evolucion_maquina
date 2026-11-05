@@ -175,11 +175,10 @@ La linea maneja las maquinas a travez de la clase base, usando el metodo oficial
 
 a) Da al menos dos razones por las que `BandaTransportadora : public Motor` es un error de diseño.
 
-[Inserta aquí tu respuesta]
-
+Para que exista esta relacion de herencia, la relacion tiene que ser "es un", en el caso de motor, la maquina no es un tipo de bandaTransportadora, por lo que ni comparten el comportamiento o trabajo. Ademas, con esta herencia los metodos heredados se convirtirian en inutiles ya que a ninguna de las dos maquinas tienen diferente funcionamiento.
 b) La relación entre `BandaTransportadora` y `Motor`, ¿es composición o agregación? ¿Por qué?
 
-[Inserta aquí tu respuesta]
+La relacion dentre BandaTransportadora y Motor tiene que composicion ya que la banda tiene un motor, componente indispensable para la vida de la BandaTransportadora, si se destruye la maquina no sirve.
 
 **3.9 Etapa 9. La librería y la prueba final**
 
