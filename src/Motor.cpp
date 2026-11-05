@@ -13,18 +13,18 @@ namespace planta
         }
 
         this->velocidadMaxRpm = velocidadMaxRpm;
-        this->velocidadMaxRpm = 0.0;
+        this->velocidadActualRpm = 0.0;
     }
 
     void Motor::fijarVelocidad(double rpm)
     {
         if (rpm < 0)
         {
-            velocidadMaxRpm = 0.0;
+            velocidadActualRpm = 0.0;
         }
         else if (rpm > velocidadMaxRpm)
         {
-            velocidadMaxRpm = velocidadMaxRpm;
+            velocidadActualRpm = velocidadMaxRpm;
         }
         else
         {

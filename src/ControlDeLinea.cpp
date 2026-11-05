@@ -37,7 +37,7 @@ namespace planta
     {
         if (maquinas.empty())
         {
-            std::cout << " La linea no tiene maquinas\n";
+            std::cout << "La linea no tiene maquinas\n";
             return;
         }
 
@@ -47,7 +47,8 @@ namespace planta
         for (const Maquina *m : maquinas)
         {
             m->mostrarEstado();
+            totalPiezasGlobal += m->getPiezasProcesadas(); // <--- Aquí se acumulan las piezas
         }
-        std::cout << " Total de piezas producidas en la linea: " << totalPiezasGlobal << "\n";
+        std::cout << "Total de piezas producidas en la linea: " << totalPiezasGlobal << "\n";
     }
 } // namespace planta
