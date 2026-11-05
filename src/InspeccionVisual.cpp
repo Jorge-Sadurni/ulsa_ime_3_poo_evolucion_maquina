@@ -9,9 +9,7 @@ int InspeccionVisual::tiempoCicloSeg() const
     return 15;
 }
 
-void InspeccionVisual::procesar()
+void InspeccionVisual::ejecutarCiclo()
 {
     std::cout << "Inspeccionando Pieza\n";
-    registrarPieza();
-    agregarTiempo(tiempoCicloSeg());
 }

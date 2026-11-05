@@ -151,25 +151,25 @@ Por parte de procesar y agregarTiempo, InspeccionVisual nunca llamo a que regist
 
 b) ¿Por qué el compilador no lo detectó?
 
-[Inserta aquí tu respuesta]
+El compilador no lo detecta porque solo revisa que las firmas y parametros sean correctos. No entiende la logica y la complejidad del contrato que se establecio de manera externa.
 
 c) ¿Qué pasaría si el próximo equipo tampoco lee el comentario del contrato?
 
-[Inserta aquí tu respuesta]
+Ocurriria otra falla igual. Los contribuidores podrian ignorar o olvidar que hay una regla de por medio que toda maquina debe seguir, e introducirian su propia logica.
 
 **3.7 Etapa 7. La base hace cumplir el contrato**
 
 a) ¿Cómo puede una clase derivada sobrescribir un método que es privado en la base?
 
-[Inserta aquí tu respuesta]
+La etiqueta private bloque quien puede ver o llamar al metodo desde afuera, sin embargo no afecta al polimorfismo, al usar virtual la clase base puede usar una propia verion de las clases hijas.
 
 b) ¿Qué ocurre ahora con una máquina cuyo tiempo de ciclo es 0? Compáralo con la Etapa 6.
 
-[Inserta aquí tu respuesta]
+En la etapa 6 el programa no decia nada y pasaba desapercibido valores invalidos (pzas negativas o infinitas). En la etapa 7 se agregaron validaciones y restricciones para que en el momento de que haya un valor invalido el try-catch lo puede reconocer.
 
 c) ¿Por qué la línea ignoró el "atajo" del torno, pero la llamada directa no? ¿Cómo corregiste el diseño?
 
-[Inserta aquí tu respuesta]
+La linea maneja las maquinas a travez de la clase base, usando el metodo oficial, debido a esto los metodos sueltos que esten por fuera a una clase derivada no se ejecutan.
 
 **3.8 Etapa 8. Herencia mal usada**
 

@@ -12,8 +12,10 @@ private:
 public:
     explicit Torno(const std::string &nombre);
 
-    void procesar() override;
     int tiempoCicloSeg() const override;
+
+private:
+    void ejecutarCiclo() override;
 };
 
 #endif

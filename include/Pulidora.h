@@ -9,7 +9,9 @@ public:
     explicit Pulidora(const std::string &nombre);
 
     int tiempoCicloSeg() const override;
-    void procesar() override;
+
+private:
+    void ejecutarCiclo() override;
 };
 
 #endif
