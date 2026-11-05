@@ -4,18 +4,22 @@
 #include "Maquina.h"
 #include "Motor.h"
 
-class Torno : public Maquina
+namespace planta
 {
-private:
-    Motor husillo;
 
-public:
-    explicit Torno(const std::string &nombre);
+    class Torno : public Maquina
+    {
+    private:
+        Motor husillo;
 
-    int tiempoCicloSeg() const override;
+    public:
+        explicit Torno(const std::string &nombre);
 
-private:
-    void ejecutarCiclo() override;
-};
+        int tiempoCicloSeg() const override;
+
+    private:
+        void ejecutarCiclo() override;
+    };
+} // namespace planta
 
 #endif

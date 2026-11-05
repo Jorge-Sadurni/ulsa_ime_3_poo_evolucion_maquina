@@ -2,14 +2,18 @@
 
 #include <iostream>
 
-InspeccionVisual::InspeccionVisual(const std::string &nombre) : Maquina(nombre) {}
-
-int InspeccionVisual::tiempoCicloSeg() const
+namespace planta
 {
-    return 15;
-}
 
-void InspeccionVisual::ejecutarCiclo()
-{
-    std::cout << "Inspeccionando Pieza\n";
-}
+    InspeccionVisual::InspeccionVisual(const std::string &nombre) : Maquina(nombre) {}
+
+    int InspeccionVisual::tiempoCicloSeg() const
+    {
+        return 15;
+    }
+
+    void InspeccionVisual::ejecutarCiclo()
+    {
+        std::cout << "Inspeccionando Pieza\n";
+    }
+} // namespace planta

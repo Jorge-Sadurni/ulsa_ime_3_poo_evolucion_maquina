@@ -5,17 +5,21 @@
 
 #include <vector>
 
-// Coordina las maquinas de la linea. Las maquinas existen fuera de la linea:
-// la linea solo las conoce (agregacion) y nunca las destruye.
-class ControlDeLinea
+namespace planta
 {
-private:
-    std::vector<Maquina *> maquinas;
 
-public:
-    bool agregar(Maquina *maquina);
-    void ejecutarTurno(int ciclos);
-    void imprimirReporte() const;
-};
+    // Coordina las maquinas de la linea. Las maquinas existen fuera de la linea:
+    // la linea solo las conoce (agregacion) y nunca las destruye.
+    class ControlDeLinea
+    {
+    private:
+        std::vector<Maquina *> maquinas;
+
+    public:
+        bool agregar(Maquina *maquina);
+        void ejecutarTurno(int ciclos);
+        void imprimirReporte() const;
+    };
+} // namespace planta
 
 #endif

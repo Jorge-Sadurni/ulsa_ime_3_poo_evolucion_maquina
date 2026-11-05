@@ -3,15 +3,20 @@
 
 #include "Maquina.h"
 
-class Fresadora : public Maquina
+namespace planta
 {
-public:
-    explicit Fresadora(const std::string &nombre);
 
-    int tiempoCicloSeg() const override;
+    class Fresadora : public Maquina
+    {
+    public:
+        explicit Fresadora(const std::string &nombre);
 
-private:
-    void ejecutarCiclo() override;
-};
+        int tiempoCicloSeg() const override;
+
+    private:
+        void ejecutarCiclo() override;
+    };
+
+} // namespace planta
 
 #endif

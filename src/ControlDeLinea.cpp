@@ -2,41 +2,45 @@
 
 #include <iostream>
 
-bool ControlDeLinea::agregar(Maquina *maquina)
+namespace planta
 {
-    if (maquina == nullptr)
-    {
-        return false;
-    }
-    maquinas.push_back(maquina);
-    return true;
-}
 
-void ControlDeLinea::ejecutarTurno(int ciclos)
-{
-    for (Maquina *m : maquinas)
+    bool ControlDeLinea::agregar(Maquina *maquina)
     {
-        for (int i = 0; i < ciclos; i++)
+        if (maquina == nullptr)
         {
-            m->procesar();
+            return false;
+        }
+        maquinas.push_back(maquina);
+        return true;
+    }
+
+    void ControlDeLinea::ejecutarTurno(int ciclos)
+    {
+        for (Maquina *m : maquinas)
+        {
+            for (int i = 0; i < ciclos; i++)
+            {
+                m->procesar();
+            }
         }
     }
-}
 
-void ControlDeLinea::imprimirReporte() const
-{
-    if (maquinas.empty())
+    void ControlDeLinea::imprimirReporte() const
     {
-        std::cout << " La linea no tiene maquinas\n";
-        return;
-    }
+        if (maquinas.empty())
+        {
+            std::cout << " La linea no tiene maquinas\n";
+            return;
+        }
 
-    std::cout << "--- Reporte de la linea ---\n";
-    int totalPiezasGlobal = 0;
+        std::cout << "--- Reporte de la linea ---\n";
+        int totalPiezasGlobal = 0;
 
-    for (const Maquina *m : maquinas)
-    {
-        m->mostrarEstado();
+        for (const Maquina *m : maquinas)
+        {
+            m->mostrarEstado();
+        }
+        std::cout << " Total de piezas producidas en la linea: " << totalPiezasGlobal << "\n";
     }
-    std::cout << " Total de piezas producidas en la linea: " << totalPiezasGlobal << "\n";
-}
+} // namespace planta

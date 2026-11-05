@@ -3,15 +3,19 @@
 
 #include "Maquina.h"
 
-class InspeccionVisual : public Maquina
+namespace planta
 {
-public:
-    explicit InspeccionVisual(const std::string &nombre);
 
-    int tiempoCicloSeg() const override;
+    class InspeccionVisual : public Maquina
+    {
+    public:
+        explicit InspeccionVisual(const std::string &nombre);
 
-private:
-    void ejecutarCiclo() override;
-};
+        int tiempoCicloSeg() const override;
+
+    private:
+        void ejecutarCiclo() override;
+    };
+} // namespace planta
 
 #endif

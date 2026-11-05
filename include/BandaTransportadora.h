@@ -4,17 +4,21 @@
 #include "Maquina.h"
 #include "Motor.h"
 
-class BandaTransportadora : public Maquina
+namespace planta
 {
-private:
-    Motor motor;
 
-    void ejecutarCiclo() override;
+    class BandaTransportadora : public Maquina
+    {
+    private:
+        Motor motor;
 
-public:
-    explicit BandaTransportadora(const std::string &nombre);
+        void ejecutarCiclo() override;
 
-    int tiempoCicloSeg() const override;
-};
+    public:
+        explicit BandaTransportadora(const std::string &nombre);
+
+        int tiempoCicloSeg() const override;
+    };
+} // namespace planta
 
 #endif

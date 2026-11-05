@@ -11,35 +11,40 @@
 //      mayor que cero.
 // La base es quien registra la pieza y el tiempo de cada ciclo, y quien
 // verifica que el tiempo sea valido.
-class Maquina
+
+namespace planta
 {
-private:
-    std::string nombre;
-    int piezasProcesadas;
-    int tiempoTrabajadoSeg;
 
-    void registrarPieza();
-    void agregarTiempo(int segundos);
-    int tiempoCicloValidado() const;
+    class Maquina
+    {
+    private:
+        std::string nombre;
+        int piezasProcesadas;
+        int tiempoTrabajadoSeg;
 
-    // Lo que cada maquina hace en un ciclo. Solo la base lo llama.
-    virtual void ejecutarCiclo() = 0;
+        void registrarPieza();
+        void agregarTiempo(int segundos);
+        int tiempoCicloValidado() const;
 
-public:
-    explicit Maquina(const std::string &nombre);
-    virtual ~Maquina() = default;
+        // Lo que cada maquina hace en un ciclo. Solo la base lo llama.
+        virtual void ejecutarCiclo() = 0;
 
-    // Procesa exactamente una pieza. No es virtual: ninguna derivada
-    // puede cambiar las reglas del ciclo.
-    void procesar();
+    public:
+        explicit Maquina(const std::string &nombre);
+        virtual ~Maquina() = default;
 
-    virtual int tiempoCicloSeg() const = 0;
-    double capacidadPorHora() const;
+        // Procesa exactamente una pieza. No es virtual: ninguna derivada
+        // puede cambiar las reglas del ciclo.
+        void procesar();
 
-    const std::string &getNombre() const;
-    int getPiezasProcesadas() const;
-    int getTiempoTrabajadoSeg() const;
-    void mostrarEstado() const;
-};
+        virtual int tiempoCicloSeg() const = 0;
+        double capacidadPorHora() const;
+
+        const std::string &getNombre() const;
+        int getPiezasProcesadas() const;
+        int getTiempoTrabajadoSeg() const;
+        void mostrarEstado() const;
+    };
+} // namespace planta
 
 #endif
