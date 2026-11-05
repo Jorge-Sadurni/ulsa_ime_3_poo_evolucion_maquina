@@ -147,8 +147,7 @@ Es mejor este error de compilacion ya que de avisa del error logico que tienes, 
 **3.6 Etapa 6. El contrato que el compilador no ve**
 
 a) ¿Qué partes del contrato violó `InspeccionVisual`?
-
-[Inserta aquí tu respuesta]
+Por parte de procesar y agregarTiempo, InspeccionVisual nunca llamo a que registaran la pieza y nunca agrego el tiempo trabajado, por lo que en el reporte de inspeccion se quedo en 0 pzas procesadas y 0 seg.
 
 b) ¿Por qué el compilador no lo detectó?
 
