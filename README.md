@@ -8,7 +8,7 @@ Llena cada espacio conforme avances en las fases de [PRACTICA.md](PRACTICA.md).
 
 **1.1 El problema con mis propias palabras**
 
-La planta de manufactura que se trabajo durante el segundo parcial tiene las maquinas torno, fresadora, pulidora, estación de inspección y banda transportador que trabajan en conjunto en una linea de produccion. Cada maquina tiene un nombre, cuenta las piezas procesadas, el tiempo trabajado y sabe cuanto  tiempo dura un ciclo. Finalmente la planta ejecuta turnos y genera un reporte con las piezas, el tiempo y la capacidad por hora de cada máquina.
+La planta de manufactura que se trabajo durante el segundo parcial tiene las maquinas torno, fresadora, pulidora, estación de inspección y banda transportadora que trabajan en conjunto en una linea de produccion. Cada maquina tiene un nombre, cuenta las piezas procesadas, el tiempo trabajado y sabe cuanto  tiempo dura un ciclo. Finalmente la planta ejecuta turnos y genera un reporte con las piezas, el tiempo y la capacidad por hora de cada máquina.
 
 **1.2 Reglas que siempre deben cumplirse en una máquina** (escribe al menos tres)
 
@@ -229,7 +229,7 @@ Retos opcionales que intenté: 0
 
 **5.1 Enlace a mi fork**
 
-[Inserta aquí el enlace a tu fork]
+[[Inserta aquí el enlace a tu fork](https://github.com/Jorge-Sadurni/ulsa_ime_3_poo_evolucion_maquina/blob/main/README.md)]
 
 ## Cierre y reflexión
 
@@ -256,4 +256,4 @@ En esta practica aprendi sobre las clases abstractas de como definen un comporta
 
 **6.4 ¿Qué cambiarías de tu proceso la próxima vez?**
 
-Tener mas tiempo de preparacion para emepzar el proyecto ya que hay 9 etapas, las cuales tienen varios puntos a realizar. Ser mas organizado en los archivos h y cpp para poder identificar donde estan mis metodos y desde el principio tener una idea de como seria el producto final.
+Tener mas tiempo de preparacion para empezar el proyecto ya que hay 9 etapas, las cuales tienen varios puntos a realizar. Ser mas organizado en los archivos h y cpp para poder identificar donde estan mis metodos y desde el principio tener una idea de como seria el producto final.
