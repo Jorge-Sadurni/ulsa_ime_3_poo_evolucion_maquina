@@ -5,13 +5,20 @@
 namespace planta
 {
 
-    bool ControlDeLinea::agregar(Maquina *maquina)
+    bool ControlDeLinea::agregar(Maquina *m)
     {
-        if (maquina == nullptr)
-        {
+        if (m == nullptr)
             return false;
+
+        for (const auto &maquina : maquinas)
+        {
+            if (maquina == m)
+            {
+                return false;
+            }
         }
-        maquinas.push_back(maquina);
+
+        maquinas.push_back(m);
         return true;
     }
 

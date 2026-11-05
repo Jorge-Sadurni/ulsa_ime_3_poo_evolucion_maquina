@@ -31,20 +31,20 @@ En caso de que otro equipo contribuya y desconozca de estas reglas puede ocurrir
 
 **2.2 Diagrama final (Etapa 9)**
 
-![Diagrama final](diseno_solucion.png)
+![Diagrama final](diseño_solucion.png)
 
 **2.3 ¿Qué cambió entre los dos diagramas?**
 
 | Elemento | Etapa 0 | Etapa 9 | Etapa que lo cambió |
 | --- | --- | --- | --- |
-| Visibilidad de los atributos de `Maquina` | _____ | _____ | _____ |
-| `procesar()` | _____ | _____ | _____ |
-| `tiempoCicloSeg()` | _____ | _____ | _____ |
-| Destructor de `Maquina` | _____ | _____ | _____ |
-| ¿Se pueden crear objetos `Maquina`? | _____ | _____ | _____ |
-| Relación `ControlDeLinea` - `Maquina` | _____ | _____ | _____ |
-| Relación `Torno` - `Motor` | _____ | _____ | _____ |
-| Relación `BandaTransportadora` - `Motor` | _____ | _____ | _____ |
+| Visibilidad de los atributos de `Maquina` | public | private | Etapa 1 |
+| `procesar()` | Metodo concreto normal | Metodo virtual puro | Etapa 5 |
+| `tiempoCicloSeg()` | No existia | Metodo virtual puro | Etapa 2 y 5 |
+| Destructor de `Maquina` | Destructor estandar | Destructor virtual | Etapa 4  |
+| ¿Se pueden crear objetos `Maquina`? | Si | No | Etapa 5  |
+| Relación `ControlDeLinea` - `Maquina` | Composicion | Agregacion por punteros | Etapa 3  |
+| Relación `Torno` - `Motor` | No existia  | Composicion | Etapa 4 |
+| Relación `BandaTransportadora` - `Motor` | No existia | No tiene motor  | Diseño base |
 
 ## Fase 3. Implementar
 
@@ -184,19 +184,19 @@ La relacion dentre BandaTransportadora y Motor tiene que composicion ya que la b
 
 a) Después de agregar la `Cortadora`, ¿qué archivos mostró `git status`? ¿Cuántos archivos de la librería tuviste que modificar?
 
-[Inserta aquí tu respuesta]
+C++ mostro unicamnete el main.cpp como modificado, junto con los dos archivos nuevos de Cortadora (untracked), mientras que los demas archivos permanecieron ocultos gracias al git.ignore. Ninguj archivo de la libreria tuvo que ser modificado, solo el main y cortadora sufrieron cambios.
 
 b) ¿Qué pasó al escribir `-lplanta` antes de `src/main.cpp`? ¿Por qué?
 
-[Inserta aquí tu respuesta]
+El enlazador marcó errores de "referencia indefinida". Pasa porque el enlazador lee los argumentos de izquierda a derecha: si pones la librería antes, la revisa cuando el compilador todavía no pedía ninguna función, por lo que no enlaza nada. Al poner main.cpp primero, el programa avisa qué funciones necesita y luego la librería las encuentra y las resuelve.
 
 **3.10 Bitácora de dudas**
 
 | # | Etapa | Duda | Cómo la resolví | Fuente |
 | --- | --- | --- | --- | --- |
-| 1 | _____ | _____ | _____ | _____ |
-| 2 | _____ | _____ | _____ | _____ |
-| 3 | _____ | _____ | _____ | _____ |
+| 1 | 2 | Virtual y Override | Use Virtual y Override para que las llamadas de metodos a las clases hijas funcionaran de manera correcta | Material de Clase. Unidad 4 |
+| 2 | 4 | Destructores | Para que el destructor no solo destruyera la clase base use un destructor virtual para que se pudiera desplazar a las clases derivadas | Acertijos y Guias de la Practica asistida de Github |
+| 3 | 5 | Clase Abstracta | Quite toda instancia que existia en la clase abstracta para que no romper los conceptos de polimorfismo | Material de Clase |
 
 ## Fase 4. Probar y mejorar
 
@@ -204,24 +204,26 @@ b) ¿Qué pasó al escribir `-lplanta` antes de `src/main.cpp`? ¿Por qué?
 
 | # | Caso | Resultado esperado | Resultado obtenido | ¿Pasa? |
 | --- | --- | --- | --- | --- |
-| 1 | Máquina con nombre vacío | Excepción con mensaje claro | _____ | _____ |
-| 2 | Reporte de una línea vacía | "La linea no tiene maquinas" | _____ | _____ |
-| 3 | `agregar(nullptr)` | Devuelve `false` | _____ | _____ |
-| 4 | Reporte antes de ejecutar el turno | 0 piezas, 0 s y capacidad calculada | _____ | _____ |
-| 5 | Turno de 0 ciclos | Nada cambia | _____ | _____ |
-| 6 | Torno con 3 ciclos | 3 piezas, 135 s, 80 pzas/h | _____ | _____ |
-| 7 | Máquina con `tiempoCicloSeg()` igual a 0 | Excepción con mensaje claro | _____ | _____ |
-| 8 | Máquina con `tiempoCicloSeg()` negativo | Excepción con mensaje claro | _____ | _____ |
-| 9 | La misma máquina agregada dos veces | _____ | _____ | _____ |
+| 1 | Máquina con nombre vacío | Excepción con mensaje claro | El nombre no puede estar vacio | Si |
+| 2 | Reporte de una línea vacía | "La linea no tiene maquinas" |  La linea no tiene maquinas | Si |
+| 3 | `agregar(nullptr)` | Devuelve `false` | Resultado OK: Se rechazo el nullptr correctamente (retorno false). | Si |
+| 4 | Reporte antes de ejecutar el turno | 0 piezas, 0 s y capacidad calculada | 0 pzas, 0 s y capacidad calculada | Si |
+| 5 | Turno de 0 ciclos | Nada cambia | Nada cambio | Si |
+| 6 | Torno con 3 ciclos | 3 piezas, 135 s, 80 pzas/h | T-01 | piezas: 3 | tiempo: 135 s | capacidad: 80 pzas/h | Si |
+| 7 | Máquina con `tiempoCicloSeg()` igual a 0 | Excepción con mensaje claro | Validacion de tiempos invalidos (0 o negativos):
+Excepcion capturada correctamente: El tiempo de ciclo no puede ser menor o igual a 0 | Si |
+| 8 | Máquina con `tiempoCicloSeg()` negativo | Excepción con mensaje claro | Validacion de tiempos invalidos (0 o negativos):
+Excepcion capturada correctamente: El tiempo de ciclo no puede ser menor o igual a 0 | Si |
+| 9 | La misma máquina agregada dos veces | No duplicar | Resultado OK: Se evito duplicar la misma maquina en la linea. | Si |
 
 **4.2 Bitácora de mejoras**
 
 | # | Falla o mejora detectada | Qué cambié | Por qué |
 | --- | --- | --- | --- |
-| 1 | _____ | _____ | _____ |
-| 2 | _____ | _____ | _____ |
+| 1 | La linea aceptaba maquinas duplicadas | Hice una restriccion en agregar(), que impide agregar maquinas duplicadas | En la vida real las maquinas tienen nombres y si agregan dos maquinas del mismo tipo, tienen que tener un identificador o simplemente no las aceptan. |
+| 2 | Destructor de maquinas genereal | Puse el destrcutor vitrual en la maquina base | Para que en el momneto de eliminar las clases hijas la el metodo si pueda eliminar el torno o fresadora. |
 
-Retos opcionales que intenté: _____
+Retos opcionales que intenté: 0
 
 ## Fase 5. Publicar en GitHub
 
@@ -235,23 +237,23 @@ Retos opcionales que intenté: _____
 
 | Error | Etapa en que apareció | Restricción que lo impide ahora | ¿Quién lo detecta: el compilador o el programa? |
 | --- | --- | --- | --- |
-| Contadores con valores inválidos | _____ | _____ | _____ |
-| Máquina "fantasma" creada a escondidas | _____ | _____ | _____ |
-| Método que no sobrescribe por un `const` | _____ | _____ | _____ |
-| Máquinas copiadas y "rebanadas" | _____ | _____ | _____ |
-| Destrucción incompleta | _____ | _____ | _____ |
-| Máquina sin `procesar()` propio | _____ | _____ | _____ |
-| Tiempo de ciclo inválido | _____ | _____ | _____ |
-| Derivada que no registra sus piezas | _____ | _____ | _____ |
+| Contadores con valores inválidos | 1 | dentro de agregarTiempo, std::invalid_argument | El programa |
+| Máquina "fantasma" creada a escondidas | 1 | Explicit | El compilador |
+| Método que no sobrescribe por un `const` | 2 | override | El compilador |
+| Máquinas copiadas y "rebanadas" | 3 | Punteros | El compilador |
+| Destrucción incompleta | 4 | Destructor virtual | El compilador |
+| Máquina sin `procesar()` propio | 5 | Metodos vituales puros | El compilador |
+| Tiempo de ciclo inválido | 6 | Contrato de tiempoCicloSeg() | El programa |
+| Derivada que no registra sus piezas | 7 | logica y sistema | El programa |
 
 **6.2 ¿Cuál de los errores fue el más peligroso: el de compilación, la advertencia o el que compilaba sin problemas? ¿Por qué?**
 
-[Inserta aquí tu respuesta]
+Yo creo que el que compilaba sin problema ya que si agregabas un valor invalido, un nombre vacio, un tiempo negativo o piezas procesadas negativas, la salida aunque visualmente no tiene errores, la logica de la planta nnunca iba a coincidir con el reporte.
 
 **6.3 ¿Qué aprendiste en esta práctica?**
 
-[Inserta aquí tu respuesta]
+En esta practica aprendi sobre las clases abstractas de como definen un comportamiento, los contratos con virtual y override que obligan a las clases derivadas a desarrollar los metodos heredados de manera personalizada, como los destrcutores necesitan de un virtual para poder eliminar las clases hijas y no destruir solo las maquinas base, la importancia de punteros para desplazarse de maquina en maquina para no sufrir el slicing, el uso namespace  para evitar confusiones de maquinas, mantener una organizacion y tener la posibilidad de agregar maquinas en el futuro sin problema y finalmente de manera general el polimorfismo.
 
 **6.4 ¿Qué cambiarías de tu proceso la próxima vez?**
 
-[Inserta aquí tu respuesta]
+Tener mas tiempo de preparacion para emepzar el proyecto ya que hay 9 etapas, las cuales tienen varios puntos a realizar. Ser mas organizado en los archivos h y cpp para poder identificar donde estan mis metodos y desde el principio tener una idea de como seria el producto final.
