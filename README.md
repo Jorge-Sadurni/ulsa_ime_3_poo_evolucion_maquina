@@ -31,7 +31,7 @@ En caso de que otro equipo contribuya y desconozca de estas reglas puede ocurrir
 
 **2.2 Diagrama final (Etapa 9)**
 
-![Diagrama final](diseño_solucion.png)
+![Diagrama final](diseno_solucion.png)
 
 **2.3 ¿Qué cambió entre los dos diagramas?**
 
@@ -221,7 +221,7 @@ Excepcion capturada correctamente: El tiempo de ciclo no puede ser menor o igual
 | # | Falla o mejora detectada | Qué cambié | Por qué |
 | --- | --- | --- | --- |
 | 1 | La linea aceptaba maquinas duplicadas | Hice una restriccion en agregar(), que impide agregar maquinas duplicadas | En la vida real las maquinas tienen nombres y si agregan dos maquinas del mismo tipo, tienen que tener un identificador o simplemente no las aceptan. |
-| 2 | Destructor de maquinas genereal | Puse el destrcutor vitrual en la maquina base | Para que en el momneto de eliminar las clases hijas la el metodo si pueda eliminar el torno o fresadora. |
+| 2 | Destructor de maquinas genereal | Puse el destrcutor vitrual en la maquina base | Para que en el momento de eliminar las clases hijas la el metodo si pueda eliminar el torno o fresadora. |
 
 Retos opcionales que intenté: 0
 
